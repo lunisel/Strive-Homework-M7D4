@@ -1,0 +1,122 @@
+/* -------------------------HEADER CSS--------------------------- */
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    height: fit-content;
+  }
+  
+  a:hover{
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .cont-header {
+    background-color: #ffcc00;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+  }
+  
+  .cont-header h1 {
+    color: white;
+    font-size: 8vh;
+    margin: 0;
+  }
+
+  /* -----------------------NAVBAR CSS--------------------------- */
+
+.navbar.navbar-expand-lg.navbar-light.bg-light{
+    height: 7vh;
+    padding: 0;
+}
+
+div.container.nav-cont{
+    display: flex;
+    align-items: center;
+    height: 5vh;
+}
+
+a.navbar-brand{
+    height: 100%;
+}
+
+.navbar-brand img{
+    height: inherit;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+a.category-link{
+    display: block;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    width: 100%;
+}
+
+a.category-link:hover{
+    background-color: rgba(0, 0, 0, 0.089);
+}
+
+.profile-icon:hover{
+    /* opacity: 70%; */
+    color: #E0995E !important;
+    cursor: pointer;
+}
+
+/* -----------------------------HOMEPAGE CSS------------------------- */
+
+/* CARDS */
+div.card.card-main{
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px rgba(0, 0, 0, 0.219);
+  }
+  
+  div.card.card-main.active{
+    border: solid 1px black;
+  }
+
+  div.card.card-main:hover{
+    border: solid 1px black;
+  }
+  
+  .cart-img-cont{
+    width: 90%;
+    height: fit-content;
+    margin: auto;
+  }
+  
+  .cart-img-cont img{
+    width: 100%;
+    object-fit: cover;
+    padding-top: 0.5rem;
+  }
+
+  /* OTHERS */
+
+  .spinner-cont{
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+  }
+
+  /*------------------------------- PROFILE CSS LOGIN------------------------------ */
+
+  .login-cont{
+    width: 70%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding-top: 3rem;
+  }
