@@ -1,19 +1,34 @@
-import { createStore } from "redux";
-import mainReducer from "../reducers";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import userReducer from "../reducers/user.js";
+import jobsReducer from "../reducers/jobs.js";
+import thunk from "redux-thunk";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
 export const initialState = {
   user: {
     email: "",
-    favourite: [],
+    favourite: []
   },
-  query: "",
-  selectedJob: null,
+  jobs: {
+    selectedJob: null,
+    allJobs: [],
+    isLoading: true,
+    error: false
+  }
 };
 
+const bigReducers = combineReducers({
+  jobs: jobsReducer,
+  user: userReducer
+});
+
 const configureStore = createStore(
-  mainReducer,
+  bigReducers,
   initialState,
-  process.env.REACT_APP_DEVELOPMENT && window.__REDUX_DEVTOOLS_EXTENSION__()
+  process.env.REACT_APP_DEVELOPMENT
+    ? composeEnhancers(applyMiddleware(thunk))
+    : compose(applyMiddleware(thunk))
 );
 
 export default configureStore;
