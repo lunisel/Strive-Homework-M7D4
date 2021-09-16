@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import { addToFavouritesAction } from "../../actions";
 
 const mapStateToProps = (state) => ({
-  job: state.selectedJob,
-  email: state.user.email,
+  job: state.jobs.selectedJob,
+  email: state.user.email
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToFavourites: (job) => dispatch(addToFavouritesAction(job)),
+  addToFavourites: (job) => dispatch(addToFavouritesAction(job))
 });
 
 const Details = (props) => {

@@ -1,15 +1,16 @@
 import { Card } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import { addSelectedJobAction } from "../../actions";
+import { addSelectedJobAction } from "../../actions/index.js";
 
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  addSelectedJob: (job) => dispatch(addSelectedJobAction(job)),
+  addSelectedJob: (job) => dispatch(addSelectedJobAction(job))
 });
 
 const SingleJob = (props) => {
+  console.log(props.state);
   return (
     <Card
       className="card-main"

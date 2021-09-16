@@ -6,7 +6,7 @@ import {
   Form,
   FormControl,
   Button,
-  Container,
+  Container
 } from "react-bootstrap";
 import logo from "../assets/briefcase.png";
 import { useState } from "react";
@@ -14,12 +14,11 @@ import { connect } from "react-redux";
 import { setQueryAction } from "../actions";
 
 const mapStateToProps = (state) => ({
-  email: state.user.email,
-  query: state.query,
+  email: state.user.email
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setQueryRedux: (queryToAdd) => dispatch(setQueryAction(queryToAdd)),
+  setQueryRedux: (queryToAdd) => dispatch(setQueryAction(queryToAdd))
 });
 
 const NavBar = (props) => {
@@ -41,16 +40,22 @@ const NavBar = (props) => {
               navbarScroll
             >
               <div
-                onClick={()=> props.history.push("/")}
-                className={props.location.pathname === "/" ? "active nav-link" : "nav-link"}
+                onClick={() => props.history.push("/")}
+                className={
+                  props.location.pathname === "/"
+                    ? "active nav-link"
+                    : "nav-link"
+                }
               >
                 Home
               </div>
               <div
                 href="/profile"
-                onClick={()=> props.history.push("/profile")}
+                onClick={() => props.history.push("/profile")}
                 className={
-                  props.location.pathname === "/profile" ? "active nav-link" : "nav-link"
+                  props.location.pathname === "/profile"
+                    ? "active nav-link"
+                    : "nav-link"
                 }
               >
                 {props.email ? "My Profile" : "Sign-in"}

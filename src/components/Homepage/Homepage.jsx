@@ -1,13 +1,12 @@
 import { Component } from "react";
 import JobList from "./JobList";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Container } from "react-bootstrap";
 import Loading from "../Loading";
 
 class Homepage extends Component {
   state = {
     jobs: [],
-    isLoading: true,
+    isLoading: true
   };
 
   getJobs = async () => {
@@ -22,7 +21,7 @@ class Homepage extends Component {
         console.log(this.state);
         this.setState({
           ...this.state,
-          isLoading: false,
+          isLoading: false
         });
       } else {
         console.log("error");
