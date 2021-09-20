@@ -15,6 +15,7 @@ import { setQuery } from "../actions";
 
 const NavBar = (props) => {
   const email = useSelector((state) => state.user.email);
+  const query = useSelector((state) => state.jobs.query);
 
   const dispatch = useDispatch();
 
@@ -103,7 +104,8 @@ const NavBar = (props) => {
               className="d-flex"
               onSubmit={(e) => {
                 e.preventDefault();
-                dispatch(setQuery(e.currentTarget.value));
+                dispatch(setQuery(query));
+                props.history.push("/search");
               }}
             >
               <FormControl
