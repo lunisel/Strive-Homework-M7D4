@@ -6,26 +6,20 @@ import {
   Form,
   FormControl,
   Button,
-  Container
+  Container,
 } from "react-bootstrap";
 import logo from "../assets/briefcase.png";
-import { useState } from "react";
-import { connect } from "react-redux";
-import { setQueryAction } from "../actions";
-
-const mapStateToProps = (state) => ({
-  email: state.user.email
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setQueryRedux: (queryToAdd) => dispatch(setQueryAction(queryToAdd))
-});
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setQuery } from "../actions";
 
 const NavBar = (props) => {
-  const [query, setQuery] = useState("");
+  const email = useSelector((state) => state.user.email);
+
+  const dispatch = useDispatch();
+
   return (
     <>
-      {console.log(query)}
       <Navbar bg="light" expand="lg">
         <Container className="nav-cont">
           <Navbar.Brand href="/">
@@ -58,7 +52,7 @@ const NavBar = (props) => {
                     : "nav-link"
                 }
               >
-                {props.email ? "My Profile" : "Sign-in"}
+                {email ? "My Profile" : "Sign-in"}
               </div>
               <NavDropdown title="Categories" id="navbarScrollingDropdown">
                 <Link className="category-link" to="/category/business">
@@ -109,7 +103,7 @@ const NavBar = (props) => {
               className="d-flex"
               onSubmit={(e) => {
                 e.preventDefault();
-                props.setQueryRedux(query);
+                dispatch(setQuery(e.currentTarget.value));
               }}
             >
               <FormControl
@@ -117,15 +111,7 @@ const NavBar = (props) => {
                 placeholder="Search"
                 className="mr-2"
                 aria-label="Search"
-                value={query}
-                onChange={(e) => setQuery(e.currentTarget.value)}
-                onClick={() => {
-                  if (props.location.pathname === "/search") {
-                    console.log(query);
-                  } else {
-                    props.history.push("/search");
-                  }
-                }}
+                onChange={(e) => dispatch(setQuery(e.currentTarget.value))}
               />
               <Button variant="outline-success" type="submit">
                 Search
@@ -138,4 +124,4 @@ const NavBar = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavBar));
+export default withRouter(NavBar);

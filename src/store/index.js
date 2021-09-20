@@ -8,19 +8,20 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 export const initialState = {
   user: {
     email: "",
-    favourite: []
+    favourite: [],
   },
   jobs: {
     selectedJob: null,
     allJobs: [],
     isLoading: true,
-    error: false
-  }
+    error: false,
+    query: null,
+  },
 };
 
 const bigReducers = combineReducers({
   jobs: jobsReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 const configureStore = createStore(

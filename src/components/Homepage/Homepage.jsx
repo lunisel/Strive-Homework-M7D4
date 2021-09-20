@@ -1,49 +1,34 @@
-import { Component } from "react";
 import JobList from "./JobList";
 import { Container } from "react-bootstrap";
 import Loading from "../Loading";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fillJobsAction } from "../../actions";
 
-class Homepage extends Component {
-  state = {
-    jobs: [],
-    isLoading: true
-  };
+const Homepage = () => {
+  const isLoading = useSelector((state) => state.jobs.isLoading);
+  const allJobs = useSelector((state) => state.jobs.allJobs);
+  const query = useSelector((state) => state.jobs.query);
 
-  getJobs = async () => {
-    try {
-      let resp = await fetch(
-        "https://strive-jobs-api.herokuapp.com/jobs?limit=18"
-      );
-      if (resp.ok) {
-        let data = await resp.json();
-        let jobs = data.data;
-        this.setState({ ...this.state, jobs: jobs });
-        console.log(this.state);
-        this.setState({
-          ...this.state,
-          isLoading: false
-        });
-      } else {
-        console.log("error");
-      }
-    } catch (err) {
-      console.log(err);
+  const dispatch = useDispatch();
+
+  useEffect(async () => {
+    if (query) {
+      dispatch(fillJobsAction(query));
+    } else {
+      dispatch(fillJobsAction());
     }
-  };
+  }, [query]);
 
-  componentDidMount = async () => {
-    await this.getJobs("limit=18");
-  };
-
-  render() {
-    return (
-      <Container>
-        {this.state.isLoading ? (
-          <Loading />
-        ) : (
-          <div className="home-cont">
-            <JobList jobs={this.state.jobs} />
-            {/* <div className="prev-next-cont my-2">
+  return (
+    <Container>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="home-cont">
+          <JobList jobs={allJobs} />
+          {/* <div className="prev-next-cont my-2">
               <div
                 className="prev mr-2"
                 onClick={() => this.getJobs(`limit=18&skip=0`)}
@@ -57,11 +42,10 @@ class Homepage extends Component {
                 <BsArrowRight style={{ fontSize: "2rem" }} />
               </div>}
             </div> */}
-          </div>
-        )}
-      </Container>
-    );
-  }
-}
+        </div>
+      )}
+    </Container>
+  );
+};
 
 export default Homepage;
